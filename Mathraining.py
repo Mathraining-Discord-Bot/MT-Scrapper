@@ -1,7 +1,5 @@
-import requests
+import faster_than_requests as requests
 import bs4 as parser
-
-
 class User:
     def __init__(self, user: int, url="https://www.mathraining.be"):
         self.url = url
@@ -43,8 +41,8 @@ class User:
 
     def __fetch_info(self):
         urls = self.url + "/users/" + str(self.user)
-        data = requests.get(urls)
-        return parser.BeautifulSoup(data.content, "lxml")
+        data = requests.get2str(urls)
+        return parser.BeautifulSoup(data, "lxml")
 
     @staticmethod
     def __progression_to_number(s: str):
