@@ -31,7 +31,4 @@ def alltest():
 
 
 if __name__ == "__main__":
-    time = t.time()
-    print("old all test")
     alltest()
-    print("All test executed in ", (t.time()-time)*1000, "ms")
