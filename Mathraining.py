@@ -2,7 +2,7 @@ import faster_than_requests as requests
 import bs4 as parser
 
 error = "Une erreur a été rencontrée, contactez un Admin ou un Modérateur"
-a = ['Score :', 'Excercices résolus :', 'Problèmes résolus :', 'Combinatoire :', 'Géométrie :', 'Théorie des nombres :',
+a = ['name', 'Score :', 'Excercices résolus :', 'Problèmes résolus :', 'Combinatoire :', 'Géométrie :', 'Théorie des nombres :',
      'Algèbre :', 'Équations Fonctionnelles :', 'Inégalités :']
 
 
@@ -45,18 +45,24 @@ class User:
             return [0]
         return [progressions_by_type, progressions_by_section]
 
+    def name(self):
+        a = self.content.find('h1')
+        return " ".join(a.text.splitlines())
+
     def info(self):
         score = self.score()
         progressions = self.progressions()
         if score == 0:
-            return {"error": error}
+            return {"error": "Utilisateur à 0 points"}
         if score == float('infinity'):
-            return {"error": error}
+            return {"error": "Cet utilisateur est un Administrateur"}
+        name = self.name()
         response = {}
         l1 = progressions[0]
         l2 = progressions[1]
-        response[a[0]] = score
-        i = 1
+        response[a[0]] = name
+        response[a[1]] = score
+        i = 2
         for s in l1:
             response[a[i]] = s
             i += 1
