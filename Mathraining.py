@@ -1,7 +1,6 @@
 import requests
 import bs4 as parser
 
-
 class User:
     def __init__(self, user: int, url="https://www.mathraining.be"):
         self.url = url
