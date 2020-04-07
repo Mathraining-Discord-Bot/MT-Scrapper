@@ -1,5 +1,11 @@
 import faster_than_requests as requests
 import bs4 as parser
+
+error = "Une erreur a été rencontrée, contactez un Admin ou un Modérateur"
+a = ['name', 'Score :', 'Excercices résolus :', 'Problèmes résolus :', 'Combinatoire :', 'Géométrie :', 'Théorie des nombres :',
+     'Algèbre :', 'Équations Fonctionnelles :', 'Inégalités :']
+
+
 class User:
     def __init__(self, user: int, url="https://www.mathraining.be"):
         self.url = url
@@ -38,6 +44,32 @@ class User:
         else:
             return [0]
         return [progressions_by_type, progressions_by_section]
+
+    def name(self):
+        a = self.content.find('h1')
+        return " ".join(a.text.splitlines())
+
+    def info(self):
+        score = self.score()
+        progressions = self.progressions()
+        if score == 0:
+            return {"error": "Utilisateur à 0 points"}
+        if score == float('infinity'):
+            return {"error": "Cet utilisateur est un Administrateur"}
+        name = self.name()
+        response = {}
+        l1 = progressions[0]
+        l2 = progressions[1]
+        response[a[0]] = name
+        response[a[1]] = score
+        i = 2
+        for s in l1:
+            response[a[i]] = s
+            i += 1
+        for d in l2:
+            response[a[i]] = d
+            i += 1
+        return response
 
     def __fetch_info(self):
         urls = self.url + "/users/" + str(self.user)
