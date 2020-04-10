@@ -33,6 +33,16 @@ correctors = Mathraining.top_correctors(10, True)
 print(correctors)
 ```
 
+**mathuser**
+```python
+from mathraining.scrapper import mathuser
+User = mathuser.User(10) #Create the object user of id 10
+print(User.name()) #print the name of the User
+print(User.info()) #print all the informations about this User
+```
+
+See all the documentation here : https://therewillbeadocumentationsomeday.iassureyou
+
 ## Author
 
 👤 **Charlotte Thomas**
