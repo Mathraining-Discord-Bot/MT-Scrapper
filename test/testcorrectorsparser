@@ -1,4 +1,4 @@
-from mathsite import Mathraining
+from src.mathsite import Mathraining
 import time as t
 
 def test(i=10, s=False):

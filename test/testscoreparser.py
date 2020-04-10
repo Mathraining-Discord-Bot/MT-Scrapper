@@ -1,4 +1,4 @@
-import mathuser as MT
+from src import mathuser as MT
 import time as t
 
 

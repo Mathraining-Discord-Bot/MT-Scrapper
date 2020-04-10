@@ -19,11 +19,13 @@ lib/
 lib64/
 parts/
 sdist/
+src/__init__.py
 var/
 wheels/
 pip-wheel-metadata/
 share/python-wheels/
 *.egg-info/
+setup.py
 .installed.cfg
 *.egg
 MANIFEST

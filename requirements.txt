@@ -1,3 +1,2 @@
 faster_than_requests==0.9.6
 beautifulsoup4==4.9.0
-htmlement==1.0.0

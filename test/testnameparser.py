@@ -1,4 +1,4 @@
-from mathuser import User
+from src.mathuser import User
 import time as t
 
 def test(id: int):
