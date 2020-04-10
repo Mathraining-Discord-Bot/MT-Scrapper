@@ -15,8 +15,22 @@
 
 ## Install
 
-```sh
+```bash
 python3 -m pip install mathraining-scrapper
+```
+
+## Usage
+
+**mathsite**
+```python
+#Import the mathsite library 
+from mathraining.scrapper import mathsite
+Mathraining = mathsite.Mathraining() #Create the Mathraining object
+#Get the 10th best correctors sorted by total number of corrections
+correctors = Mathraining.top_correctors(10)
+#Get the 10th best correctors sorted by number of corrections within the last 2 weeks
+correctors = Mathraining.top_correctors(10, True)
+print(correctors)
 ```
 
 ## Author
