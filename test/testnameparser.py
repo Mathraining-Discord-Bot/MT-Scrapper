@@ -1,4 +1,4 @@
-from Mathraining import User
+from mathuser import User
 import time as t
 
 def test(id: int):
@@ -6,4 +6,6 @@ def test(id: int):
     return MT.name()
 
 if __name__ == "__main__":
-    print(test(4574))
+    time = t.time()
+    print(test(38))
+    print(t.time()-time)

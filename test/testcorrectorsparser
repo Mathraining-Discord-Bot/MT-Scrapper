@@ -1,0 +1,23 @@
+from mathsite import Mathraining
+import time as t
+
+def test(i=10, s=False):
+    A = Mathraining()
+    return A.top_correctors(i, s)
+
+
+if __name__ == "__main__":
+    time = t.time()
+    print("Getting 10 (default) best correctors by number of corrections")
+    print(*test().items())
+    print("Executed in ", t.time()-time, "s")
+    time = t.time()
+    print("Getting 10 (default) best correctors sorted by number of corrections within the last 2 weeks")
+    print(*test(10, True).items())
+    print("Executed in ", t.time()-time, "s")
+    time = t.time()
+    print("Getting the 5 (default) best correctors")
+    print(*test(5).items())
+    print("Executed in ", t.time()-time, "s")
+
+# print(test())
