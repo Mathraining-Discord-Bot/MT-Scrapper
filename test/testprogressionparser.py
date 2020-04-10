@@ -1,4 +1,4 @@
-from Mathraining import User
+from mathuser import User
 import time as t
 
 
