@@ -2,8 +2,7 @@ import faster_than_requests as requests
 import bs4 as parser
 
 error = "Une erreur a été rencontrée, contactez un Admin ou un Modérateur"
-a = ['name', 'Score :', 'Excercices résolus :', 'Problèmes résolus :', 'Combinatoire :', 'Géométrie :', 'Théorie des nombres :',
-     'Algèbre :', 'Équations Fonctionnelles :', 'Inégalités :']
+field_names = ['name', 'Score :', 'Excercices résolus :', 'Problèmes résolus :', 'Combinatoire :', 'Géométrie :', 'Théorie des nombres :', 'Algèbre :', 'Équations Fonctionnelles :', 'Inégalités :']
 
 
 class User:
@@ -57,17 +56,13 @@ class User:
         if score == float('infinity'):
             return {"error": "Cet utilisateur est un Administrateur"}
         name = self.name()
-        response = {}
-        l1 = progressions[0]
-        l2 = progressions[1]
-        response[a[0]] = name
-        response[a[1]] = score
+        response = {field_names[0]: name, field_names[1]: score}
         i = 2
-        for s in l1:
-            response[a[i]] = s
+        for s in progressions[0]:
+            response[field_names[i]] = s
             i += 1
-        for d in l2:
-            response[a[i]] = d
+        for d in progressions[1]:
+            response[field_names[i]] = d
             i += 1
         return response
 

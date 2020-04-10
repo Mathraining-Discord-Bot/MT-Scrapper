@@ -1,4 +1,4 @@
-import Mathraining as MT
+import mathuser as MT
 import time as t
 
 
