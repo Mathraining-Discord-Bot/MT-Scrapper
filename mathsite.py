@@ -13,15 +13,18 @@ class Mathraining:
         a = len(correctors)
         a = a if a <= i else i
         for i in range(1, a + 1):
-            corrector = correctors[i]
-            s = str(corrector).splitlines()
-            line = str(s[1])
-            splited_line = line.split(" ")
-            name = self.extract_name(splited_line)
-            total_correction = int(s[2][31:-5])
-            last_corrections = int(s[3][31:-5])
-            list[name] = (total_correction, last_corrections)
+            corrector = self.extract_corrector(correctors[i])
+            list[corrector[0]] = corrector[1]
         return list
+
+    def extract_corrector(self, corrector: str):
+        s = str(corrector).splitlines()
+        line = str(s[1])
+        splited_line = line.split(" ")
+        name = self.extract_name(splited_line)
+        total_correction = int(s[2][31:-5])
+        last_corrections = int(s[3][31:-5])
+        return [name, (total_correction, last_corrections)]
 
     def extract_name(self, splited_line: list):
         color = splited_line[2][14:-9]
