@@ -29,7 +29,8 @@ setup.py
 .installed.cfg
 *.egg
 MANIFEST
-
+mathraining/__init__.py
+mathraining/scrapper/__init__.py
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.

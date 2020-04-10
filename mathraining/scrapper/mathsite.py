@@ -1,7 +1,6 @@
 import bs4 as parser
 import faster_than_requests as requests
 
-
 class Mathraining:
     def __init__(self, url="https://mathraining.be"):
         self.url = url
