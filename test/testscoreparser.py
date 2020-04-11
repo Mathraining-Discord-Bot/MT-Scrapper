@@ -1,9 +1,9 @@
-import mathuser as MT
+from mathraining.scrapper.mathuser import User
 import time as t
 
 
 def test_parser(i: int):
-    MTS = MT.User(i)
+    MTS = User(i)
     return MTS.score()
 
 

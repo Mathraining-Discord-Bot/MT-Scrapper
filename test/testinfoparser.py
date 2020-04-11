@@ -1,4 +1,4 @@
-from mathuser import User
+from mathraining.scrapper.mathuser import User
 import time as t
 
 

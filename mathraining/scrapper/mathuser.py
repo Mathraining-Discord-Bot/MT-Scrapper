@@ -2,7 +2,8 @@ import faster_than_requests as requests
 import bs4 as parser
 
 error = "Une erreur a été rencontrée, contactez un Admin ou un Modérateur"
-field_names = ['name', 'Score :', 'Excercices résolus :', 'Problèmes résolus :', 'Combinatoire :', 'Géométrie :', 'Théorie des nombres :', 'Algèbre :', 'Équations Fonctionnelles :', 'Inégalités :']
+field_names = ['name', 'Score :', 'Excercices résolus :', 'Problèmes résolus :', 'Combinatoire :', 'Géométrie :',
+               'Théorie des nombres :', 'Algèbre :', 'Équations Fonctionnelles :', 'Inégalités :']
 
 
 class User:
@@ -12,10 +13,7 @@ class User:
         self.content = self.__fetch_info()
         self.admin = self.is_admin()
 
-    def page(self):
-        return self.content.prettify()
-
-    def score(self):
+    def score(self) -> int:
         a = self.content.find_all('p', attrs={"style": u"font-size:24px; margin-top:20px;"})
         if a:
             a = str(a[0])
@@ -26,10 +24,10 @@ class User:
             else:
                 return 0
 
-    def is_admin(self):
+    def is_admin(self) -> bool:
         return self.content.find_all('span', attrs={"style": u"margin-left:30px; color:black;"}) != []
 
-    def progressions(self):
+    def progressions(self) -> list[int]:
         progressions = self.content.find_all('div', attrs={"class": "progress-bar", "role": "progressbar"})
         progressions_by_type = []
         progressions_by_section = []
@@ -44,11 +42,11 @@ class User:
             return [0]
         return [progressions_by_type, progressions_by_section]
 
-    def name(self):
+    def name(self) -> str:
         a = self.content.find('h1')
         return " ".join(a.text.splitlines())
 
-    def info(self):
+    def info(self) -> dict:
         score = self.score()
         progressions = self.progressions()
         if score == 0:
@@ -66,13 +64,19 @@ class User:
             i += 1
         return response
 
-    def __fetch_info(self):
+    def solved(self, problem: int) -> bool:
+        try:
+            return self.content.text.__contains__("Problème #" + str(problem))
+        except:
+            return False
+
+    def __fetch_info(self) -> parser.BeautifulSoup:
         urls = self.url + "/users/" + str(self.user)
         data = requests.get2str(urls)
         return parser.BeautifulSoup(data, "lxml")
 
     @staticmethod
-    def __progression_to_number(s: str):
+    def __progression_to_number(s: str) -> int:
         s = str(s)
         a = s.splitlines()[1][30:-7]
         return a if a != '' else '0%'

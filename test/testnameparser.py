@@ -1,11 +1,13 @@
-from mathuser import User
+from mathraining.scrapper.mathuser import User
 import time as t
+
 
 def test(id: int):
     MT = User(id)
-    return MT.name()
+    return MT.solved(10021)
+
 
 if __name__ == "__main__":
     time = t.time()
-    print(test(38))
-    print(t.time()-time)
+    print(test(4574))
+    print(t.time() - time)
